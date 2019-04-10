@@ -1,0 +1,24 @@
+baseURL = "/"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+title = "Heaven in Hell's Kitchen"
+theme = "bleach-theme"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[params]
+  description = "A simple and lightweight Hugo theme for a blazing fast static blog!"
+  author = "Jai Jeffryes"
+  logo = "images/Jeffryes_HeadCrop_Photo Credit Jan La Salle.jpg"
+  dateFormat = "Jan 2, 2006"
+  googleAnalitycsID = "Your ID"
+
+  [params.footer]
+    impressum = false
+    company = "Steel Wig"
+
+  [params.social]
+    facebook = "https://facebook.com"
+    twitter = "https://twitter.com"
+    instagram = "https://instagram.com"
+    github = "https://github.com"
+    linkedin = "https://linkedin.com"
