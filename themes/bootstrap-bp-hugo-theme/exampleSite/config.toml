@@ -1,6 +1,6 @@
-baseURL = "/"
+baseURL = "https://example.com/"
 languageCode = "en-US"
-title = "Heaven in Hell's Kitchen"
+title = "My New Hugo Site"
 theme = "bootstrap-bp-hugo-theme"
 # googleAnalytics = "UA-123-45"
 copyright = "Sebastian Pech"
@@ -8,7 +8,6 @@ enableRobotsTXT = true
 pygmentsCodeFences = true
 canonifyurls = true
 paginate = 5
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [sitemap]
     changefreq = "weekly"
@@ -21,10 +20,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     page = "/:slug/"
 
 [Author]  
-  name = "Jai Jeffryes"
+  name = "Sebastian Pech"
 
 [params]
-  description = "I wear many hats"
+  description = "Text about the site"
   #images = ["logo.jpg"]
   showPostSummary = true
   startPageColumns = true
