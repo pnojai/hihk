@@ -1,5 +1,5 @@
 baseurl = "/"
-title = "Heaven in Hell's Kitchen"
+title = "Steel Wig"
 languageCode = "en-us"
 paginate = "10" # Number of posts per page
 theme = "Mainroad"
@@ -9,12 +9,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [Author]
   name = "Jai Jeffryes"
-  bio = "Classical pianist, data scientist."
-  avatar = "img/avatar.png"
+  bio = "Wearer of many hats."
+  avatar = "img/Jeffryes_HeadCrop.jpg"
 
 [Params]
-  subtitle = "I wear many hats" # Subtitle of your site
-  description = "Notes about music, code, data, and neuroscience." # Description of your site
+  subtitle = "Music, Art, Code, Data, and Neuroscience" # Subtitle of your site
+  description = "A place to keep track" # Description of your site
   opengraph = true
   twitter_cards = false
   readmore = false # Show "Read more" button in list if true
