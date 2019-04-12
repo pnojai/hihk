@@ -13,8 +13,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   avatar = "img/Jeffryes_HeadCrop.jpg"
 
 [Params]
-  subtitle = "Music, Art, Code, Data, and Neuroscience" # Subtitle of your site
-  description = "A place to keep track" # Description of your site
+  subtitle = "Heaven in Hell's Kitchen" # Subtitle of your site
+  description = "Music, Art, Code, Data, and Neuroscience" # Description of your site
   opengraph = true
   twitter_cards = false
   readmore = false # Show "Read more" button in list if true
