@@ -2,7 +2,8 @@
 [about]
 title = ""                            # default: .Site.Title
 description = ""                      # default: .Site.Params.info.description
-logo = "/images/logo.png"             # default: "/images/logo.png"
+logo = "/images/Jeffryes_HeadCrop_Photo Credit Jan La Salle.jpg"
+                                      # default: "/images/logo.png"
 
 # Breadcrumbs Widget config
 [breadcrumbs]
