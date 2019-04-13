@@ -6,6 +6,8 @@ sidebar: false
 title: About Jai
 ---
 
+## Jai Jeffryes - Classical Pianist and Data Scientist
+
 Those who know me know I like hats, and I wear many of them.
 
 I am a professional musician with performances worldwide from North America to Paris, Berlin, and Tokyo, from the Ambassador Auditorium in Los Angeles to Lincoln Center in New York.
