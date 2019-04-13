@@ -5,7 +5,7 @@ menu: main
 sidebar: false
 title: About Jai
 ---
-<img src="/./about_files/Jeffryes_HeadCrop.jpg" alt="" height="200px"/>
+<img src="/./about_files/Jeffryes_HeadCrop.jpg" alt="" height="100px"/>
 ## Jai Jeffryes - Classical Pianist and Data Scientist
 
 Those who know me know I like hats, and I wear many of them.
