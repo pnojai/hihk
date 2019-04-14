@@ -7,13 +7,13 @@ title: About Jai
 thumbnail: ""
 ---
 <img src="/./about_files/Jeffryes_HeadCrop.jpg" alt="" width="200px"/>
-## Jai Jeffryes - Classical Pianist and Data Analytics Programmer
+## Jai Jeffryes - Classical Pianist and Data Analytic Programmer
 
 Those who know me know I like hats, and I wear many of them.
 
 I am a professional musician with performances worldwide from North America to Paris, Berlin, and Tokyo, from the Ambassador Auditorium in Los Angeles to Lincoln Center in New York.
 
-I am a data analytics programmer. I analyze data and program applications in support of neuroscience research at the Sulzer Laboratory at Columbia University.
+I am a data analytic programmer. I support neuroscience research at the Sulzer Laboratory at Columbia University.
 
 As a musician, I focus on contemporary classical piano music. I produce recordings released on Composers Concordance Records and my own label, Steel Wig Records. I'm a Voting Member of The Recording Academy and vote in the Grammy Awards.
 
