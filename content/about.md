@@ -4,6 +4,7 @@ date: "2019-04-13"
 menu: main
 sidebar: false
 title: About Jai
+thumbnail: "img/Jeffryes_HeadCrop.jpg"
 ---
 <img src="/./about_files/Jeffryes_HeadCrop.jpg" alt="" height="100px"/>
 ## Jai Jeffryes - Classical Pianist and Data Scientist
