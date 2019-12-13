@@ -1,0 +1,418 @@
+---
+title: Hello, Machine Learning
+author: Jai
+date: '2019-12-12'
+slug: hello-machine-learning
+categories:
+  - Machine Learning
+tags:
+  - Machine Learning
+  - R
+description: ''
+thumbnail: ''
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+This is a *Hello, World* type of project for getting acquainted with machine learning. It examines the `iris` dataset.
+
+References:
+
+1. [Your First Machine Learning Project in R Step-By-Step](https://machinelearningmastery.com/machine-learning-in-r-step-by-step/).
+1. [The `caret` package](https://topepo.github.io/caret/). Package home page by Max Kuhn.
+
+## Approach
+I began with this outline.
+
+- Define problem.
+- Prepare data.
+- Evaluate algorithms.
+- Improve results.
+- Present results.
+
+## Structured write up
+I revised the presentation per these questions, suggested by *Data Science Weekly*.
+
+1. What question are you looking to answer?
+1. Why does this question matter?
+1. What data did you use?
+1. Where did you get the data?
+1. How was the data sampled?
+1. How was the data obtained?
+1. How did you explore the data?
+1. How did you model the data?
+1. Why did you choose to model it that way?
+1. What code did you write or use?
+1. How did you fit the model?
+1. How did you validate the model?
+1. How do you know the results make sense?
+1. How did you visualize the results?
+1. How would you communicate the results to others?
+1. What did you learn?
+1. What you would do differently if you did this project again?
+1. If you were going to continue this work, what next steps you would take with this project?
+1. How you would explain what you did to a data scientist?
+1. How you would explain what you did to a non-data scientist
+
+Reference: [How You Should Create A Data Science Portfolio That Will Get You Hired](https://www.datascienceweekly.org/articles/how-you-should-create-a-data-science-portfolio-that-will-get-you-hired).
+
+# Dependencies
+`caret` needs these suggested packages for this analysis. They don't require loading as libraries, but `caret` refers to them, so they need to be installed.
+
+- `ellipse`. Plotting ellipses in `featurePlot()`.
+- `randomForest`.
+
+```{r message=FALSE}
+library(caret)
+```
+
+# Objectives
+In this project, I examine measures of parts of the iris flower and use those measures to predict its species. The motivation for the analysis is to demonstrate unsupervised classification, in which classes derive from the data and predictor variables map to these classes based on machine learning models. I code a workflow in a design on which I can base other such analyses.
+
+# Data
+Edgar Anderson's iris dataset gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of three species of iris. The species are iris setosa, versicolor, and virginica. Anderson collected the data in 1935.
+
+The `iris` dataset appears in the package `datasets` in the base installation of R. It is accessible and it is clean, so preparation and pre-processing are unrequired, making it convenient for demonstrating data analyses. 
+
+- Predictor variables in the `iris` data are numeric and in a consistent unit and scale (centimeters), requiring no conversion.
+- Iris observations can be classified by species, so we can run unsupervised classification models on it.
+- Species is given for each iris observation. Therefore, this dataset is *labelled*, enabling us to split the dataset for machine learning whereby one partition serves to train the models while holding out the other partition for testing predictions and recording their accuracy against the known label.
+- There are multiple species in the dataset, so it is multi-class, or multi-nominal. 
+
+Citation:
+
+The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2–5.
+
+# Modeling
+The `caret` package (which stands for Classification and Regression Training) provides a consistent interface into hundreds of machine learning algorithms and provides useful convenience methods for data visualization, data resampling, model tuning and model comparison, among other features. It’s a must have tool for machine learning projects in R.
+
+In this analysis, I evaluate 5 different algorithms:
+
+- Linear Discriminant Analysis (LDA)
+- Classification and Regression Trees (CART).
+- k-Nearest Neighbors (kNN).
+- Support Vector Machines (SVM) with a linear kernel.
+- Random Forest (RF)
+
+This is a good mixture of simple linear (LDA), nonlinear (CART, kNN) and complex nonlinear methods (SVM, RF).
+
+# Load data
+I use a generic name for the dataset so I can reuse my code.
+```{r}
+data(iris)
+dataset <- iris
+rm(iris)
+gc()
+```
+
+## Create validation dataset
+I split the dataset into a partitions for training of the models and validation of the predictions. The training set contains 80% of the original dataset, from which I hold out 20% for validation. Since the partioning is a random sample, I initialize the random seed in order to reproduce these results in each execution.
+
+```{r}
+# Create a list of 80% of the rows in the original dataset we can
+# use for training.
+set.seed(7)
+training_index <- createDataPartition(dataset$Species, p=0.80, list=FALSE)
+# Select 20% of the data for validation.
+validation <- dataset[-training_index,]
+# Use the remaining 80% of data to training and testing the models
+dataset <- dataset[training_index,]
+```
+
+# Exploratory analysis
+Summarize the data and examine it.
+
+- Dimensions of the dataset.
+- Types of the attributes.
+- Peek at the data itself.
+- Levels of the class attribute.
+- Breakdown of the instances in each class.
+- Statistical summary of all attributes.
+
+```{r}
+# Dimensions of the dataset.
+dim(dataset)
+
+# List types for each attribute.
+sapply(dataset, class)
+
+str(dataset)
+
+# Take a peek at the first 5 rows of the data.
+head(dataset)
+
+# List the levels for the class factor.
+levels(dataset$Species)
+
+# Summarize the class distribution.
+percentage <- prop.table(table(dataset$Species)) * 100
+cbind(freq=table(dataset$Species), percentage=percentage)
+
+# Summarize attribute distributions.
+summary(dataset)
+```
+
+# Visualize
+We are going to look at two types of plots:
+
+1. Univariate plots, to better understand each attribute.
+1. Multivariate plots, to better understand the relationships between attributes.
+
+## Univariate
+It is helpful with visualization to have a way to refer to just the input attributes and just the output attributes. Let’s set that up and call the inputs attributes x and the output attribute (or class) y.
+
+```{r}
+# Split input and output.
+x <- dataset[,1:4]
+y <- dataset[,5]
+```
+
+Given that the input variables are numeric, we can create box and whiskers plots of each. Present the distributions as histograms, too.
+
+```{r}
+# Save the plotting environment for restoring it later.
+# Note that we only return parameters we can reset.
+par.old <- par(no.readonly = TRUE)
+
+# Boxplot for each attribute on one image.
+par(mfrow = c(1,4))
+  for(i in 1:4) {
+  boxplot(x[, i], main = names(iris)[i])
+  }
+
+# Histogram for each attribute.
+# Identify numeric variables.
+is_col_numeric <- sapply(dataset, class) == "numeric"
+# Reset the plotting environment.
+par(par.old)
+# Plot.
+for(i in 1:sum(is_col_numeric)) {
+    hist(x[, i], main = names(iris)[i], xlab = "Units")
+}
+```
+
+We can also create a barplot of the Species class variable to get a graphical representation of the class distribution (generally uninteresting in this case because they’re even).
+
+```{r}
+# Barplot for class breakdown.
+plot(y)
+```
+
+## Multivariate
+Now we can look at the interactions between the variables.
+
+First let’s look at scatterplots of all pairs of attributes and color the points by class. In addition, because the scatterplots show that points for each class are generally separate, we can draw ellipses around them.
+
+`featurePlot()` comes from `caret` and it is a wrapper for `lattice` plotting of predictor variables.
+
+```{r}
+# scatterplot matrix
+featurePlot(x=x, y=y, plot="ellipse")
+```
+
+We can also look at box and whiskers plots of each input variable again, but this time broken down into separate plots for each class. This can help to tease out obvious linear separations between the classes.
+
+This is useful to see that there are clearly different distributions of the attributes for each class value.
+
+```{r}
+# Box and whiskers plots for each attribute.
+featurePlot(x=x, y=y, plot="box")
+```
+
+Next we can get an idea of the distribution of each attribute, again like the box and whiskers plots, broken down by class value. Sometimes histograms are good for this, but in this case we will use some probability density plots to give nice smooth lines for each distribution.
+
+```{r}
+# Density plots for each attribute by class value.
+scales <- list(x=list(relation="free"), y=list(relation="free"))
+featurePlot(x=x, y=y, plot="density", scales=scales)
+```
+
+# Evaluate algorithms
+Now it is time to create some models of the data and estimate their accuracy on unseen data.
+
+Here is what we are going to cover in this step:
+
+- Set-up the test harness to use 10-fold cross validation.
+- Build 5 different models to predict species from flower measurements
+- Select the best model.
+
+## Test harness
+We will run 10-fold cross validation to estimate accuracy.
+
+This will split our dataset into 10 parts, train in 9 and test on 1 and release for all combinations of train-test splits. We will also repeat the process 3 times for each algorithm with different splits of the data into 10 groups, in an effort to get a more accurate estimate.
+
+```{r}
+# Run algorithms using 10-fold cross validation.
+control <- trainControl(method="cv", number=10)
+metric <- "Accuracy"
+```
+
+We are using the metric of “Accuracy” to evaluate models. This is a ratio of the number of correctly predicted instances divided by the total number of instances in the dataset multiplied by 100 to give a percentage (e.g. 95% accurate). We will use the metric variable when we build and evaluate each model next.
+
+## Build models
+We don’t know which algorithms would be good on this problem or what configurations to use. We get an idea from the plots that some of the classes are partially linearly separable in some dimensions, so we are expecting generally good results.
+
+Our five algorithms:
+
+1. Linear Discriminant Analysis (LDA)
+1. Classification and Regression Trees (CART).
+1. k-Nearest Neighbors (kNN).
+1. Support Vector Machines (SVM) with a linear kernel.
+1. Random Forest (RF)
+
+This is our mixture of simple linear (LDA), nonlinear (CART, kNN) and complex nonlinear methods (SVM, RF). We reset the random number seed before reach run to ensure that the evaluation of each algorithm is performed using exactly the same data splits. It ensures the results are directly comparable.
+
+Build our five models.
+
+```{r}
+# Linear algorithm.
+set.seed(7)
+fit.lda <- train(Species~., data=dataset, method="lda", metric=metric, trControl=control)
+# Nonlinear algorithms.
+# CART.
+set.seed(7)
+fit.cart <- train(Species~., data=dataset, method="rpart", metric=metric, trControl=control)
+# kNN.
+set.seed(7)
+fit.knn <- train(Species~., data=dataset, method="knn", metric=metric, trControl=control)
+# Advanced algorithms.
+# SVM.
+set.seed(7)
+fit.svm <- train(Species~., data=dataset, method="svmRadial", metric=metric, trControl=control)
+# Random Forest.
+set.seed(7)
+fit.rf <- train(Species~., data=dataset, method="rf", metric=metric, trControl=control)
+```
+
+# Select best model
+We now have five models and accuracy estimations for each. We need to compare the models to each other and select the most accurate.
+
+We can report on the accuracy of each model by first creating a list of the created models and using the summary function.
+
+We can see the accuracy of each classifier and also other metrics like Kappa.
+
+```{r}
+# summarize accuracy of models
+results <- resamples(list(lda=fit.lda, cart=fit.cart, knn=fit.knn, svm=fit.svm, rf=fit.rf))
+summary(results)
+```
+
+We can also create a plot of the model evaluation results and compare the spread and the mean accuracy of each model. There is a population of accuracy measures for each algorithm because each algorithm was evaluated 10 times (10 fold cross validation).
+
+```{r}
+# compare accuracy of models
+dotplot(results)
+```
+
+Summarize the most accurate model, LDA.
+
+```{r}
+# summarize Best Model
+print(fit.lda)
+```
+
+# Predict
+Linear Discriminant Analysis (LDA) was the most accurate model. Now we want to get an idea of the accuracy of the model on our validation set.
+
+This will give us an independent final check on the accuracy of the best model. It is valuable to keep a validation set just in case you made a slip, such as overfitting to the training set or a data leak, both of which will result in an overly optimistic result.
+
+We can run the model directly on the validation set and summarize the results in a confusion matrix.
+
+```{r}
+# estimate skill of LDA on the validation dataset
+set.seed(7)
+predictions <- predict(fit.lda, validation)
+confusionMatrix(predictions, validation$Species)
+```
+
+We can see that the accuracy is 100%. It was a small validation dataset (20%), but this result is within our expected margin of 97% +/-4% suggesting we may have an accurate and a reliably accurate model.
+
+# Conclusions
+## Non-technical
+Given key measures of an iris, we are able to predict its species with an estimated accuracy of 97.5%.
+
+The measures we consider are:
+
+- Sepal length.
+- Sepal width.
+- Petal length.
+- Petal width.
+
+The species predicted by this model are:
+
+- Setosa.
+- Versicolor.
+- Virginica.
+
+If prediction were required for other species, a new dataset including those species would be necessary for training another predictive model.
+
+## Technical
+I evaluated multiple predictive models for species of iris. This was an unsupervised classification machine learning process. I arrived at a model whose estimated accuracy is 97.5%.
+
+The predictors are:
+
+- Sepal length.
+- Sepal width.
+- Petal length.
+- Petal width.
+
+The species predicted by this model are:
+
+- Setosa.
+- Versicolor.
+- Virginica.
+
+I evaluated the accuracy of five machine learning models, including algorithms that were simple linear, nonlinear or complex nonlinear methods. The superior predictive model for this dataset, established through cross validation, was Linear Discrimant Analysis.
+
+# Retrospective
+## Lessons learned.
+- Produced a machine learning project template.
+- Saw an example of a suitable dataset for machine learning. I have a picture of a clean dataset, what I would need to shoot for given an otherwise less ideal dataset.
+- Reminded me of the distinction between models that are simple linear, nonlinear, and complex nonlinear.
+- Introduced cross validation, evaluated by accuracy.
+- Demonstrated validation on a hold out set for a final check on accuracy.
+- You can get all the datatypes of a dataframe with sapply().
+- Demystified the `caret` package and started using it.
+  - `createDataPartition()`. Easy way to hold out test data.
+  - `featurePlot()`: Wrapper for `lattice plotting of predictor variables Includes ellipses and density.
+  - `trainControl()`. Control computational nuances of the `train()` function. Easy for setting up cross validation.
+  - `resamples()`. Collects resampling results for analysis and visualization.
+- Visualization.
+  - Create variables for input and output attributes to make plotting convenient.
+  - An approach for univariate and multivariate visualizations. Boxplots and histograms in the first case, scatterplots otherwise. `caret::featurePlot()` helps.
+- Plotting.
+  - Save parameter settings and restore them.
+  - `lattice::dotplot()`. A Cleveland dot plot, a bivariate `trellis` plot.
+
+## Further research
+If I were to continue this project, further research could include:
+
+- Tuning of the models.
+
+## Improvements
+These are some ideas I would consider if I were to do this project again, or another similar one.
+
+- Choose a meaningful, non-toy dataset.
+- A dataset that requires conversion, normalization, and scrubbing.
+- Identify a worthwhile research question.
+- Format for publication.
+  - [Journal of Statistical Software: Instructions for Authors](https://www.jstatsoft.org/pages/view/authors#manuscript-preparation).
+  - [Journal of Statistical Software: Style Guide](https://www.jstatsoft.org/pages/view/style).
+  
+## Study
+### Machine learning and documentation
+- [How to Use a Machine Learning Checklist to Get Accurate Predictions, Reliably](https://machinelearningmastery.com/machine-learning-checklist/).
+- [The Process](http://machinelearningmastery.com/process-for-working-through-machine-learning-problems/).
+- [What is Data Mining and KDD?](http://machinelearningmastery.com/what-is-data-mining-and-kdd/).
+- [Kappa coefficients](http://john-uebersax.com/stat/kappa.htm).
+
+### The `caret` package
+- [Building Predictive Models in R Using the `caret` Package](http://www.jstatsoft.org/v28/i05). Journal of Statistical Software.
+- [Interview with Max Kuhn](http://youtu.be/YmHyAHkjX_A). Developer of `caret`.
+- [Webinar](http://www.youtube.com/watch?v=7Jbb2ItbTC4).
+
+### Models
+- Review the models used here in *Data Science for Business*.

@@ -1,0 +1,504 @@
+---
+title: Hello, Machine Learning
+author: Jai
+date: '2019-12-12'
+slug: hello-machine-learning
+categories:
+  - Machine Learning
+tags:
+  - Machine Learning
+  - R
+description: ''
+thumbnail: ''
+---
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This is a <em>Hello, World</em> type of project for getting acquainted with machine learning. It examines the <code>iris</code> dataset.</p>
+<p>References:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://machinelearningmastery.com/machine-learning-in-r-step-by-step/">Your First Machine Learning Project in R Step-By-Step</a>.</li>
+<li><a href="https://topepo.github.io/caret/">The <code>caret</code> package</a>. Package home page by Max Kuhn.</li>
+</ol>
+<div id="approach" class="section level2">
+<h2>Approach</h2>
+<p>I began with this outline.</p>
+<ul>
+<li>Define problem.</li>
+<li>Prepare data.</li>
+<li>Evaluate algorithms.</li>
+<li>Improve results.</li>
+<li>Present results.</li>
+</ul>
+</div>
+<div id="structured-write-up" class="section level2">
+<h2>Structured write up</h2>
+<p>I revised the presentation per these questions, suggested by <em>Data Science Weekly</em>.</p>
+<ol style="list-style-type: decimal">
+<li>What question are you looking to answer?</li>
+<li>Why does this question matter?</li>
+<li>What data did you use?</li>
+<li>Where did you get the data?</li>
+<li>How was the data sampled?</li>
+<li>How was the data obtained?</li>
+<li>How did you explore the data?</li>
+<li>How did you model the data?</li>
+<li>Why did you choose to model it that way?</li>
+<li>What code did you write or use?</li>
+<li>How did you fit the model?</li>
+<li>How did you validate the model?</li>
+<li>How do you know the results make sense?</li>
+<li>How did you visualize the results?</li>
+<li>How would you communicate the results to others?</li>
+<li>What did you learn?</li>
+<li>What you would do differently if you did this project again?</li>
+<li>If you were going to continue this work, what next steps you would take with this project?</li>
+<li>How you would explain what you did to a data scientist?</li>
+<li>How you would explain what you did to a non-data scientist</li>
+</ol>
+<p>Reference: <a href="https://www.datascienceweekly.org/articles/how-you-should-create-a-data-science-portfolio-that-will-get-you-hired">How You Should Create A Data Science Portfolio That Will Get You Hired</a>.</p>
+</div>
+</div>
+<div id="dependencies" class="section level1">
+<h1>Dependencies</h1>
+<p><code>caret</code> needs these suggested packages for this analysis. They don’t require loading as libraries, but <code>caret</code> refers to them, so they need to be installed.</p>
+<ul>
+<li><code>ellipse</code>. Plotting ellipses in <code>featurePlot()</code>.</li>
+<li><code>randomForest</code>.</li>
+</ul>
+<pre class="r"><code>library(caret)</code></pre>
+</div>
+<div id="objectives" class="section level1">
+<h1>Objectives</h1>
+<p>In this project, I examine measures of parts of the iris flower and use those measures to predict its species. The motivation for the analysis is to demonstrate unsupervised classification, in which classes derive from the data and predictor variables map to these classes based on machine learning models. I code a workflow in a design on which I can base other such analyses.</p>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>Edgar Anderson’s iris dataset gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of three species of iris. The species are iris setosa, versicolor, and virginica. Anderson collected the data in 1935.</p>
+<p>The <code>iris</code> dataset appears in the package <code>datasets</code> in the base installation of R. It is accessible and it is clean, so preparation and pre-processing are unrequired, making it convenient for demonstrating data analyses.</p>
+<ul>
+<li>Predictor variables in the <code>iris</code> data are numeric and in a consistent unit and scale (centimeters), requiring no conversion.</li>
+<li>Iris observations can be classified by species, so we can run unsupervised classification models on it.</li>
+<li>Species is given for each iris observation. Therefore, this dataset is <em>labelled</em>, enabling us to split the dataset for machine learning whereby one partition serves to train the models while holding out the other partition for testing predictions and recording their accuracy against the known label.</li>
+<li>There are multiple species in the dataset, so it is multi-class, or multi-nominal.</li>
+</ul>
+<p>Citation:</p>
+<p>The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2–5.</p>
+</div>
+<div id="modeling" class="section level1">
+<h1>Modeling</h1>
+<p>The <code>caret</code> package (which stands for Classification and Regression Training) provides a consistent interface into hundreds of machine learning algorithms and provides useful convenience methods for data visualization, data resampling, model tuning and model comparison, among other features. It’s a must have tool for machine learning projects in R.</p>
+<p>In this analysis, I evaluate 5 different algorithms:</p>
+<ul>
+<li>Linear Discriminant Analysis (LDA)</li>
+<li>Classification and Regression Trees (CART).</li>
+<li>k-Nearest Neighbors (kNN).</li>
+<li>Support Vector Machines (SVM) with a linear kernel.</li>
+<li>Random Forest (RF)</li>
+</ul>
+<p>This is a good mixture of simple linear (LDA), nonlinear (CART, kNN) and complex nonlinear methods (SVM, RF).</p>
+</div>
+<div id="load-data" class="section level1">
+<h1>Load data</h1>
+<p>I use a generic name for the dataset so I can reuse my code.</p>
+<pre class="r"><code>data(iris)
+dataset &lt;- iris
+rm(iris)
+gc()</code></pre>
+<pre><code>##           used  (Mb) gc trigger  (Mb) max used  (Mb)
+## Ncells 1896471 101.3    3792447 202.6  2468148 131.9
+## Vcells 3189038  24.4    8388608  64.0  5239350  40.0</code></pre>
+<div id="create-validation-dataset" class="section level2">
+<h2>Create validation dataset</h2>
+<p>I split the dataset into a partitions for training of the models and validation of the predictions. The training set contains 80% of the original dataset, from which I hold out 20% for validation. Since the partioning is a random sample, I initialize the random seed in order to reproduce these results in each execution.</p>
+<pre class="r"><code># Create a list of 80% of the rows in the original dataset we can
+# use for training.
+set.seed(7)
+training_index &lt;- createDataPartition(dataset$Species, p=0.80, list=FALSE)
+# Select 20% of the data for validation.
+validation &lt;- dataset[-training_index,]
+# Use the remaining 80% of data to training and testing the models
+dataset &lt;- dataset[training_index,]</code></pre>
+</div>
+</div>
+<div id="exploratory-analysis" class="section level1">
+<h1>Exploratory analysis</h1>
+<p>Summarize the data and examine it.</p>
+<ul>
+<li>Dimensions of the dataset.</li>
+<li>Types of the attributes.</li>
+<li>Peek at the data itself.</li>
+<li>Levels of the class attribute.</li>
+<li>Breakdown of the instances in each class.</li>
+<li>Statistical summary of all attributes.</li>
+</ul>
+<pre class="r"><code># Dimensions of the dataset.
+dim(dataset)</code></pre>
+<pre><code>## [1] 120   5</code></pre>
+<pre class="r"><code># List types for each attribute.
+sapply(dataset, class)</code></pre>
+<pre><code>## Sepal.Length  Sepal.Width Petal.Length  Petal.Width      Species 
+##    &quot;numeric&quot;    &quot;numeric&quot;    &quot;numeric&quot;    &quot;numeric&quot;     &quot;factor&quot;</code></pre>
+<pre class="r"><code>str(dataset)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    120 obs. of  5 variables:
+##  $ Sepal.Length: num  4.9 4.7 4.6 5 5.4 5 4.4 5.4 4.8 4.8 ...
+##  $ Sepal.Width : num  3 3.2 3.1 3.6 3.9 3.4 2.9 3.7 3.4 3 ...
+##  $ Petal.Length: num  1.4 1.3 1.5 1.4 1.7 1.5 1.4 1.5 1.6 1.4 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.4 0.2 0.2 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<pre class="r"><code># Take a peek at the first 5 rows of the data.
+head(dataset)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+## 8          5.0         3.4          1.5         0.2  setosa</code></pre>
+<pre class="r"><code># List the levels for the class factor.
+levels(dataset$Species)</code></pre>
+<pre><code>## [1] &quot;setosa&quot;     &quot;versicolor&quot; &quot;virginica&quot;</code></pre>
+<pre class="r"><code># Summarize the class distribution.
+percentage &lt;- prop.table(table(dataset$Species)) * 100
+cbind(freq=table(dataset$Species), percentage=percentage)</code></pre>
+<pre><code>##            freq percentage
+## setosa       40   33.33333
+## versicolor   40   33.33333
+## virginica    40   33.33333</code></pre>
+<pre class="r"><code># Summarize attribute distributions.
+summary(dataset)</code></pre>
+<pre><code>##   Sepal.Length    Sepal.Width    Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.00   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.80   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.00   Median :4.250   Median :1.300  
+##  Mean   :5.845   Mean   :3.04   Mean   :3.756   Mean   :1.192  
+##  3rd Qu.:6.425   3rd Qu.:3.30   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.40   Max.   :6.700   Max.   :2.500  
+##        Species  
+##  setosa    :40  
+##  versicolor:40  
+##  virginica :40  
+##                 
+##                 
+## </code></pre>
+</div>
+<div id="visualize" class="section level1">
+<h1>Visualize</h1>
+<p>We are going to look at two types of plots:</p>
+<ol style="list-style-type: decimal">
+<li>Univariate plots, to better understand each attribute.</li>
+<li>Multivariate plots, to better understand the relationships between attributes.</li>
+</ol>
+<div id="univariate" class="section level2">
+<h2>Univariate</h2>
+<p>It is helpful with visualization to have a way to refer to just the input attributes and just the output attributes. Let’s set that up and call the inputs attributes x and the output attribute (or class) y.</p>
+<pre class="r"><code># Split input and output.
+x &lt;- dataset[,1:4]
+y &lt;- dataset[,5]</code></pre>
+<p>Given that the input variables are numeric, we can create box and whiskers plots of each. Present the distributions as histograms, too.</p>
+<pre class="r"><code># Save the plotting environment for restoring it later.
+# Note that we only return parameters we can reset.
+par.old &lt;- par(no.readonly = TRUE)
+
+# Boxplot for each attribute on one image.
+par(mfrow = c(1,4))
+  for(i in 1:4) {
+  boxplot(x[, i], main = names(iris)[i])
+  }</code></pre>
+<p><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code># Histogram for each attribute.
+# Identify numeric variables.
+is_col_numeric &lt;- sapply(dataset, class) == &quot;numeric&quot;
+# Reset the plotting environment.
+par(par.old)
+# Plot.
+for(i in 1:sum(is_col_numeric)) {
+    hist(x[, i], main = names(iris)[i], xlab = &quot;Units&quot;)
+}</code></pre>
+<p><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-6-2.png" width="672" /><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-6-3.png" width="672" /><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-6-4.png" width="672" /><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-6-5.png" width="672" /></p>
+<p>We can also create a barplot of the Species class variable to get a graphical representation of the class distribution (generally uninteresting in this case because they’re even).</p>
+<pre class="r"><code># Barplot for class breakdown.
+plot(y)</code></pre>
+<p><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="multivariate" class="section level2">
+<h2>Multivariate</h2>
+<p>Now we can look at the interactions between the variables.</p>
+<p>First let’s look at scatterplots of all pairs of attributes and color the points by class. In addition, because the scatterplots show that points for each class are generally separate, we can draw ellipses around them.</p>
+<p><code>featurePlot()</code> comes from <code>caret</code> and it is a wrapper for <code>lattice</code> plotting of predictor variables.</p>
+<pre class="r"><code># scatterplot matrix
+featurePlot(x=x, y=y, plot=&quot;ellipse&quot;)</code></pre>
+<p><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We can also look at box and whiskers plots of each input variable again, but this time broken down into separate plots for each class. This can help to tease out obvious linear separations between the classes.</p>
+<p>This is useful to see that there are clearly different distributions of the attributes for each class value.</p>
+<pre class="r"><code># Box and whiskers plots for each attribute.
+featurePlot(x=x, y=y, plot=&quot;box&quot;)</code></pre>
+<p><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Next we can get an idea of the distribution of each attribute, again like the box and whiskers plots, broken down by class value. Sometimes histograms are good for this, but in this case we will use some probability density plots to give nice smooth lines for each distribution.</p>
+<pre class="r"><code># Density plots for each attribute by class value.
+scales &lt;- list(x=list(relation=&quot;free&quot;), y=list(relation=&quot;free&quot;))
+featurePlot(x=x, y=y, plot=&quot;density&quot;, scales=scales)</code></pre>
+<p><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+</div>
+<div id="evaluate-algorithms" class="section level1">
+<h1>Evaluate algorithms</h1>
+<p>Now it is time to create some models of the data and estimate their accuracy on unseen data.</p>
+<p>Here is what we are going to cover in this step:</p>
+<ul>
+<li>Set-up the test harness to use 10-fold cross validation.</li>
+<li>Build 5 different models to predict species from flower measurements</li>
+<li>Select the best model.</li>
+</ul>
+<div id="test-harness" class="section level2">
+<h2>Test harness</h2>
+<p>We will run 10-fold cross validation to estimate accuracy.</p>
+<p>This will split our dataset into 10 parts, train in 9 and test on 1 and release for all combinations of train-test splits. We will also repeat the process 3 times for each algorithm with different splits of the data into 10 groups, in an effort to get a more accurate estimate.</p>
+<pre class="r"><code># Run algorithms using 10-fold cross validation.
+control &lt;- trainControl(method=&quot;cv&quot;, number=10)
+metric &lt;- &quot;Accuracy&quot;</code></pre>
+<p>We are using the metric of “Accuracy” to evaluate models. This is a ratio of the number of correctly predicted instances divided by the total number of instances in the dataset multiplied by 100 to give a percentage (e.g. 95% accurate). We will use the metric variable when we build and evaluate each model next.</p>
+</div>
+<div id="build-models" class="section level2">
+<h2>Build models</h2>
+<p>We don’t know which algorithms would be good on this problem or what configurations to use. We get an idea from the plots that some of the classes are partially linearly separable in some dimensions, so we are expecting generally good results.</p>
+<p>Our five algorithms:</p>
+<ol style="list-style-type: decimal">
+<li>Linear Discriminant Analysis (LDA)</li>
+<li>Classification and Regression Trees (CART).</li>
+<li>k-Nearest Neighbors (kNN).</li>
+<li>Support Vector Machines (SVM) with a linear kernel.</li>
+<li>Random Forest (RF)</li>
+</ol>
+<p>This is our mixture of simple linear (LDA), nonlinear (CART, kNN) and complex nonlinear methods (SVM, RF). We reset the random number seed before reach run to ensure that the evaluation of each algorithm is performed using exactly the same data splits. It ensures the results are directly comparable.</p>
+<p>Build our five models.</p>
+<pre class="r"><code># Linear algorithm.
+set.seed(7)
+fit.lda &lt;- train(Species~., data=dataset, method=&quot;lda&quot;, metric=metric, trControl=control)
+# Nonlinear algorithms.
+# CART.
+set.seed(7)
+fit.cart &lt;- train(Species~., data=dataset, method=&quot;rpart&quot;, metric=metric, trControl=control)
+# kNN.
+set.seed(7)
+fit.knn &lt;- train(Species~., data=dataset, method=&quot;knn&quot;, metric=metric, trControl=control)
+# Advanced algorithms.
+# SVM.
+set.seed(7)
+fit.svm &lt;- train(Species~., data=dataset, method=&quot;svmRadial&quot;, metric=metric, trControl=control)
+# Random Forest.
+set.seed(7)
+fit.rf &lt;- train(Species~., data=dataset, method=&quot;rf&quot;, metric=metric, trControl=control)</code></pre>
+</div>
+</div>
+<div id="select-best-model" class="section level1">
+<h1>Select best model</h1>
+<p>We now have five models and accuracy estimations for each. We need to compare the models to each other and select the most accurate.</p>
+<p>We can report on the accuracy of each model by first creating a list of the created models and using the summary function.</p>
+<p>We can see the accuracy of each classifier and also other metrics like Kappa.</p>
+<pre class="r"><code># summarize accuracy of models
+results &lt;- resamples(list(lda=fit.lda, cart=fit.cart, knn=fit.knn, svm=fit.svm, rf=fit.rf))
+summary(results)</code></pre>
+<pre><code>## 
+## Call:
+## summary.resamples(object = results)
+## 
+## Models: lda, cart, knn, svm, rf 
+## Number of resamples: 10 
+## 
+## Accuracy 
+##           Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
+## lda  0.8333333 1.0000000 1.0000000 0.9750000 1.0000000    1    0
+## cart 0.8333333 0.8541667 0.9166667 0.9166667 0.9791667    1    0
+## knn  0.8333333 0.9375000 1.0000000 0.9666667 1.0000000    1    0
+## svm  0.8333333 0.9166667 0.9166667 0.9333333 1.0000000    1    0
+## rf   0.8333333 0.9166667 1.0000000 0.9500000 1.0000000    1    0
+## 
+## Kappa 
+##      Min. 1st Qu. Median   Mean 3rd Qu. Max. NA&#39;s
+## lda  0.75 1.00000  1.000 0.9625 1.00000    1    0
+## cart 0.75 0.78125  0.875 0.8750 0.96875    1    0
+## knn  0.75 0.90625  1.000 0.9500 1.00000    1    0
+## svm  0.75 0.87500  0.875 0.9000 1.00000    1    0
+## rf   0.75 0.87500  1.000 0.9250 1.00000    1    0</code></pre>
+<p>We can also create a plot of the model evaluation results and compare the spread and the mean accuracy of each model. There is a population of accuracy measures for each algorithm because each algorithm was evaluated 10 times (10 fold cross validation).</p>
+<pre class="r"><code># compare accuracy of models
+dotplot(results)</code></pre>
+<p><img src="/post/2019-12-12-hello-machine-learning_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Summarize the most accurate model, LDA.</p>
+<pre class="r"><code># summarize Best Model
+print(fit.lda)</code></pre>
+<pre><code>## Linear Discriminant Analysis 
+## 
+## 120 samples
+##   4 predictor
+##   3 classes: &#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold) 
+## Summary of sample sizes: 108, 108, 108, 108, 108, 108, ... 
+## Resampling results:
+## 
+##   Accuracy  Kappa 
+##   0.975     0.9625</code></pre>
+</div>
+<div id="predict" class="section level1">
+<h1>Predict</h1>
+<p>Linear Discriminant Analysis (LDA) was the most accurate model. Now we want to get an idea of the accuracy of the model on our validation set.</p>
+<p>This will give us an independent final check on the accuracy of the best model. It is valuable to keep a validation set just in case you made a slip, such as overfitting to the training set or a data leak, both of which will result in an overly optimistic result.</p>
+<p>We can run the model directly on the validation set and summarize the results in a confusion matrix.</p>
+<pre class="r"><code># estimate skill of LDA on the validation dataset
+set.seed(7)
+predictions &lt;- predict(fit.lda, validation)
+confusionMatrix(predictions, validation$Species)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##             Reference
+## Prediction   setosa versicolor virginica
+##   setosa         10          0         0
+##   versicolor      0         10         0
+##   virginica       0          0        10
+## 
+## Overall Statistics
+##                                      
+##                Accuracy : 1          
+##                  95% CI : (0.8843, 1)
+##     No Information Rate : 0.3333     
+##     P-Value [Acc &gt; NIR] : 4.857e-15  
+##                                      
+##                   Kappa : 1          
+##                                      
+##  Mcnemar&#39;s Test P-Value : NA         
+## 
+## Statistics by Class:
+## 
+##                      Class: setosa Class: versicolor Class: virginica
+## Sensitivity                 1.0000            1.0000           1.0000
+## Specificity                 1.0000            1.0000           1.0000
+## Pos Pred Value              1.0000            1.0000           1.0000
+## Neg Pred Value              1.0000            1.0000           1.0000
+## Prevalence                  0.3333            0.3333           0.3333
+## Detection Rate              0.3333            0.3333           0.3333
+## Detection Prevalence        0.3333            0.3333           0.3333
+## Balanced Accuracy           1.0000            1.0000           1.0000</code></pre>
+<p>We can see that the accuracy is 100%. It was a small validation dataset (20%), but this result is within our expected margin of 97% +/-4% suggesting we may have an accurate and a reliably accurate model.</p>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<div id="non-technical" class="section level2">
+<h2>Non-technical</h2>
+<p>Given key measures of an iris, we are able to predict its species with an estimated accuracy of 97.5%.</p>
+<p>The measures we consider are:</p>
+<ul>
+<li>Sepal length.</li>
+<li>Sepal width.</li>
+<li>Petal length.</li>
+<li>Petal width.</li>
+</ul>
+<p>The species predicted by this model are:</p>
+<ul>
+<li>Setosa.</li>
+<li>Versicolor.</li>
+<li>Virginica.</li>
+</ul>
+<p>If prediction were required for other species, a new dataset including those species would be necessary for training another predictive model.</p>
+</div>
+<div id="technical" class="section level2">
+<h2>Technical</h2>
+<p>I evaluated multiple predictive models for species of iris. This was an unsupervised classification machine learning process. I arrived at a model whose estimated accuracy is 97.5%.</p>
+<p>The predictors are:</p>
+<ul>
+<li>Sepal length.</li>
+<li>Sepal width.</li>
+<li>Petal length.</li>
+<li>Petal width.</li>
+</ul>
+<p>The species predicted by this model are:</p>
+<ul>
+<li>Setosa.</li>
+<li>Versicolor.</li>
+<li>Virginica.</li>
+</ul>
+<p>I evaluated the accuracy of five machine learning models, including algorithms that were simple linear, nonlinear or complex nonlinear methods. The superior predictive model for this dataset, established through cross validation, was Linear Discrimant Analysis.</p>
+</div>
+</div>
+<div id="retrospective" class="section level1">
+<h1>Retrospective</h1>
+<div id="lessons-learned." class="section level2">
+<h2>Lessons learned.</h2>
+<ul>
+<li>Produced a machine learning project template.</li>
+<li>Saw an example of a suitable dataset for machine learning. I have a picture of a clean dataset, what I would need to shoot for given an otherwise less ideal dataset.</li>
+<li>Reminded me of the distinction between models that are simple linear, nonlinear, and complex nonlinear.</li>
+<li>Introduced cross validation, evaluated by accuracy.</li>
+<li>Demonstrated validation on a hold out set for a final check on accuracy.</li>
+<li>You can get all the datatypes of a dataframe with sapply().</li>
+<li>Demystified the <code>caret</code> package and started using it.
+<ul>
+<li><code>createDataPartition()</code>. Easy way to hold out test data.</li>
+<li><code>featurePlot()</code>: Wrapper for `lattice plotting of predictor variables Includes ellipses and density.</li>
+<li><code>trainControl()</code>. Control computational nuances of the <code>train()</code> function. Easy for setting up cross validation.</li>
+<li><code>resamples()</code>. Collects resampling results for analysis and visualization.</li>
+</ul></li>
+<li>Visualization.
+<ul>
+<li>Create variables for input and output attributes to make plotting convenient.</li>
+<li>An approach for univariate and multivariate visualizations. Boxplots and histograms in the first case, scatterplots otherwise. <code>caret::featurePlot()</code> helps.</li>
+</ul></li>
+<li>Plotting.
+<ul>
+<li>Save parameter settings and restore them.</li>
+<li><code>lattice::dotplot()</code>. A Cleveland dot plot, a bivariate <code>trellis</code> plot.</li>
+</ul></li>
+</ul>
+</div>
+<div id="further-research" class="section level2">
+<h2>Further research</h2>
+<p>If I were to continue this project, further research could include:</p>
+<ul>
+<li>Tuning of the models.</li>
+</ul>
+</div>
+<div id="improvements" class="section level2">
+<h2>Improvements</h2>
+<p>These are some ideas I would consider if I were to do this project again, or another similar one.</p>
+<ul>
+<li>Choose a meaningful, non-toy dataset.</li>
+<li>A dataset that requires conversion, normalization, and scrubbing.</li>
+<li>Identify a worthwhile research question.</li>
+<li>Format for publication.
+<ul>
+<li><a href="https://www.jstatsoft.org/pages/view/authors#manuscript-preparation">Journal of Statistical Software: Instructions for Authors</a>.</li>
+<li><a href="https://www.jstatsoft.org/pages/view/style">Journal of Statistical Software: Style Guide</a>.</li>
+</ul></li>
+</ul>
+</div>
+<div id="study" class="section level2">
+<h2>Study</h2>
+<div id="machine-learning-and-documentation" class="section level3">
+<h3>Machine learning and documentation</h3>
+<ul>
+<li><a href="https://machinelearningmastery.com/machine-learning-checklist/">How to Use a Machine Learning Checklist to Get Accurate Predictions, Reliably</a>.</li>
+<li><a href="http://machinelearningmastery.com/process-for-working-through-machine-learning-problems/">The Process</a>.</li>
+<li><a href="http://machinelearningmastery.com/what-is-data-mining-and-kdd/">What is Data Mining and KDD?</a>.</li>
+<li><a href="http://john-uebersax.com/stat/kappa.htm">Kappa coefficients</a>.</li>
+</ul>
+</div>
+<div id="the-caret-package" class="section level3">
+<h3>The <code>caret</code> package</h3>
+<ul>
+<li><a href="http://www.jstatsoft.org/v28/i05">Building Predictive Models in R Using the <code>caret</code> Package</a>. Journal of Statistical Software.</li>
+<li><a href="http://youtu.be/YmHyAHkjX_A">Interview with Max Kuhn</a>. Developer of <code>caret</code>.</li>
+<li><a href="http://www.youtube.com/watch?v=7Jbb2ItbTC4">Webinar</a>.</li>
+</ul>
+</div>
+<div id="models" class="section level3">
+<h3>Models</h3>
+<ul>
+<li>Review the models used here in <em>Data Science for Business</em>.</li>
+</ul>
+</div>
+</div>
+</div>
