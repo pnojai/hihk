@@ -109,7 +109,7 @@ gc()
 ```
 
 ## Create validation dataset
-I split the dataset into a partitions for training of the models and validation of the predictions. The training set contains 80% of the original dataset, from which I hold out 20% for validation. Since the partioning is a random sample, I initialize the random seed in order to reproduce these results in each execution.
+I split the dataset into partitions for training of the models and validation of the predictions. The training set contains 80% of the original dataset, from which I hold out 20% for validation. Since the partioning is a random sample, I initialize the random seed in order to reproduce these results in each execution.
 
 ```{r}
 # Create a list of 80% of the rows in the original dataset we can
