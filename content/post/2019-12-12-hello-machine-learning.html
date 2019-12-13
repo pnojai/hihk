@@ -8,6 +8,7 @@ categories:
 tags:
   - Machine Learning
   - R
+  - Portfolio/Jai
 description: ''
 thumbnail: ''
 ---
@@ -108,8 +109,8 @@ dataset &lt;- iris
 rm(iris)
 gc()</code></pre>
 <pre><code>##           used  (Mb) gc trigger  (Mb) max used  (Mb)
-## Ncells 1896471 101.3    3792447 202.6  2468148 131.9
-## Vcells 3189036  24.4    8388608  64.0  5239348  40.0</code></pre>
+## Ncells 1896473 101.3    3792455 202.6  2468118 131.9
+## Vcells 3189048  24.4    8388608  64.0  5239337  40.0</code></pre>
 <div id="create-validation-dataset" class="section level2">
 <h2>Create validation dataset</h2>
 <p>I split the dataset into partitions for training of the models and validation of the predictions. The training set contains 80% of the original dataset, from which I hold out 20% for validation. Since the partioning is a random sample, I initialize the random seed in order to reproduce these results in each execution.</p>
