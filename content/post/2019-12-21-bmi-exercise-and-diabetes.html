@@ -31,7 +31,7 @@ library(lodown) # Anthony Damico&#39;s lodown package, available from GitHub; aj
 
 # Set download and data directory.
 # data_dir &lt;- file.path(getwd(), &quot;../..&quot;, &quot;data&quot;)
-data_dir &lt;- &quot;./&quot;</code></pre>
+data_dir &lt;- &quot;../../static/data&quot;</code></pre>
 <div id="download-data" class="section level3">
 <h3>Download data</h3>
 <p>I downloaded the data once using this code and saved it. Execution of this code chunk is disabled.</p>
@@ -441,5 +441,11 @@ text(0.3, 0.15,
 <li>Centers for Disease Control and Prevention (CDC). Behavioral Risk Factor Surveillance System Survey Data. Atlanta, Georgia: U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, 2018.</li>
 <li>Centers for Disease Control and Prevention (CDC). National Diabetes Statistics Report, 2017. <a href="https://www.cdc.gov/diabetes/pdfs/data/statistics/national-diabetes-statistics-report.pdf">https://www.cdc.gov/diabetes/pdfs/data/statistics/national-diabetes-statistics-report.pdf</a></li>
 <li>Anthony Damico. <code>lodown</code> R package. <a href="https://github.com/ajdamico/lodown">https://github.com/ajdamico/lodown</a></li>
+</ul>
+</div>
+<div id="technical-notes" class="section level1">
+<h1>Technical notes</h1>
+<ul>
+<li>I stored the BRFSS subset in the Hugo directory, <code>static/data/</code>. per the article, <a href="https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/">Adding and reading local data files in R Markdown posts</a>. It might be worth exploring placing such files online in case I want to make code reproducible.</li>
 </ul>
 </div>

@@ -29,7 +29,7 @@ library(lodown) # Anthony Damico's lodown package, available from GitHub; ajdami
 
 # Set download and data directory.
 # data_dir <- file.path(getwd(), "../..", "data")
-data_dir <- "./"
+data_dir <- "../../static/data"
 ```
 
 ### Download data
@@ -391,3 +391,6 @@ Excessive weight plays a role in increasing the probability of diabetes. Exercis
 - Centers for Disease Control and Prevention (CDC). Behavioral Risk Factor Surveillance System Survey Data. Atlanta, Georgia: U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, 2018.
 - Centers for Disease Control and Prevention (CDC). National Diabetes Statistics Report, 2017. [https://www.cdc.gov/diabetes/pdfs/data/statistics/national-diabetes-statistics-report.pdf](https://www.cdc.gov/diabetes/pdfs/data/statistics/national-diabetes-statistics-report.pdf)
 - Anthony Damico. `lodown` R package. [https://github.com/ajdamico/lodown](https://github.com/ajdamico/lodown)
+
+# Technical notes
+- I stored the BRFSS subset in the Hugo directory, `static/data/`. per the article, [Adding and reading local data files in R Markdown posts](https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/). It might be worth exploring placing such files online in case I want to make code reproducible.
