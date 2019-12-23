@@ -393,4 +393,4 @@ Excessive weight plays a role in increasing the probability of diabetes. Exercis
 - Anthony Damico. `lodown` R package. [https://github.com/ajdamico/lodown](https://github.com/ajdamico/lodown)
 
 # Technical notes
-- I stored the BRFSS subset in the Hugo directory, `static/data/`. per the article, [Adding and reading local data files in R Markdown posts](https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/). It might be worth exploring placing such files online in case I want to make code reproducible.
+- I stored the BRFSS subset in the Hugo directory, `static/data/`, per the article, [Adding and reading local data files in R Markdown posts](https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/). It might be worth exploring placing such files online in case I want to make code reproducible.

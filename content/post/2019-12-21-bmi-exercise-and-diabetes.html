@@ -7,6 +7,7 @@ categories: [Statistics]
 tags:
   - Portfolio/Jai
   - R
+  - Hugo
 description: 'An illustration of logistic regression on BRFSS data.'
 thumbnail: ''
 ---
@@ -30,7 +31,6 @@ library(openintro)
 library(lodown) # Anthony Damico&#39;s lodown package, available from GitHub; ajdamico/lodown.
 
 # Set download and data directory.
-# data_dir &lt;- file.path(getwd(), &quot;../..&quot;, &quot;data&quot;)
 data_dir &lt;- &quot;../../static/data&quot;</code></pre>
 <div id="download-data" class="section level3">
 <h3>Download data</h3>
@@ -446,6 +446,6 @@ text(0.3, 0.15,
 <div id="technical-notes" class="section level1">
 <h1>Technical notes</h1>
 <ul>
-<li>I stored the BRFSS subset in the Hugo directory, <code>static/data/</code>. per the article, <a href="https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/">Adding and reading local data files in R Markdown posts</a>. It might be worth exploring placing such files online in case I want to make code reproducible.</li>
+<li>I stored the BRFSS subset in the Hugo directory, <code>static/data/</code>, per the article, <a href="https://blogdown-demo.rbind.io/2018/02/27/r-file-paths/">Adding and reading local data files in R Markdown posts</a>. It might be worth exploring placing such files online in case I want to make code reproducible.</li>
 </ul>
 </div>
