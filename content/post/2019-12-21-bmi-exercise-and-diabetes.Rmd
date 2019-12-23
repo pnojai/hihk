@@ -7,6 +7,7 @@ categories: [Statistics]
 tags:
   - Portfolio/Jai
   - R
+  - Hugo
 description: 'An illustration of logistic regression on BRFSS data.'
 thumbnail: ''
 ---
@@ -28,7 +29,6 @@ library(openintro)
 library(lodown) # Anthony Damico's lodown package, available from GitHub; ajdamico/lodown.
 
 # Set download and data directory.
-# data_dir <- file.path(getwd(), "../..", "data")
 data_dir <- "../../static/data"
 ```
 
