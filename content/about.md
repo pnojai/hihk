@@ -11,7 +11,7 @@ thumbnail: ""
 
 Those who know me know I like hats, and I wear many of them.
 
-I am a graduate student in Data Science at CUNY in New York City. I assist research at the Sulzer Neuroscience Sulzer Laboratory at Columbia University as a data analyst and programmer.
+I am a graduate student in Data Science at CUNY in New York City. I assist research at the Sulzer Neuroscience Laboratory at Columbia University as a data analyst and programmer.
 
 With 20 years of experience as a database administrator and programmer behind me, I attended a seminar by Edward Tufte, who inspired me to drop everything and devote myself to data science. Meanwhile, is any endeavor more relevant and pressing now than securing public health? I intend to exploit data science in the field of public health with a focus on epidemiology.
 
