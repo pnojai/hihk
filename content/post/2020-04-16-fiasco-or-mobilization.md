@@ -14,15 +14,14 @@ thumbnail: ''
 ## Dr. John Ioannidis
 Dr. John Ioannidis is well known as the author of the manifesto of reproducibility in research, [Why Most Published Research Findings Are False](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124). He published that in 2005. I learned of it much later when I attended an inspiring seminar by Edward Tufte.
 
-Fast forward to now, and I'm on fire to apply data science to public health. When I turn my sights on Dr. Ioannidis again, I realize he is a professor of epidemiology and statistics. Those weren't on my radar when I first encountered him, so it didn't sink in back then.
+Fast forward to now, and I'm on fire to apply data science to public health. When I turn my sights on Ioannidis again, I realize he is a professor of epidemiology and statistics. Those weren't on my radar when I first encountered him, so it didn't sink in back then.
 
 ## Coronavirus and *A fiasco in the making?*
-Dr. Ioannidis published an opionion piece on *StatNews* dated March 17, 2020 and entitled [A fiasco in the making? As the coronavirus pandemic takes hold, we are making decisions without reliable data](https://www.statnews.com/2020/03/17/a-fiasco-in-the-making-as-the-coronavirus-pandemic-takes-hold-we-are-making-decisions-without-reliable-data/).
+Dr. Ioannidis published an opinion piece on *StatNews* dated March 17, 2020 and entitled [A fiasco in the making? As the coronavirus pandemic takes hold, we are making decisions without reliable data](https://www.statnews.com/2020/03/17/a-fiasco-in-the-making-as-the-coronavirus-pandemic-takes-hold-we-are-making-decisions-without-reliable-data/).
 
 His thesis is we need to get better data in order to make informed policy decisions. He discusses his article in an interview for Journeyman Pictures.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/d6MZy-2fcBw" frameborder="0" allowfullscreen></iframe>
-
 
 His observations have provoked debate. I have my own concerns about his take on things, although I find the discussion healthy. Here's an overview of his article. 
 
@@ -70,7 +69,7 @@ He doesn't state explicitly the point of making that observation, an observation
 
 I have a feeling that if the guy sat in a room with me and we had a chance to talk this out, he could clarify his points and correct any of my misunderstanding about his article. We might find we even agree more than we disagree. Since that hasn't happened, the apparent tone of his observations seems cringe-worthy to me. I can't help but think of this scene from *Monty Python and the Holy Grail.*
 
-![](../../static/img/bring_out_your_dead.png)
+![](https://datascience.jeffryes.net/img/bring_out_your_dead.png)
 
 This dark comedy tells of the Plague and the sketch here is about collecting the dead bodies. One of the bodies perks up and says, "I'm not dead yet!" The guy hauling him to the cart says, in effect, "Shut up, you will be soon."
 
