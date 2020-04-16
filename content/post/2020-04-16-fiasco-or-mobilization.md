@@ -7,7 +7,7 @@ categories:
   - Public Health
 tags:
   - Epidemiology
-description: 'Discussing Ioannidis'
+description: ''
 thumbnail: ''
 ---
 
