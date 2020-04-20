@@ -33,6 +33,6 @@ The data show that infections in that region were 50-85 times higher than the nu
 
 Although the risk of death from contraction of coronavirus is on par with the flu, life with coronavirus sure doesn't feel like life with just the flu. This has a lot to do with timing. COVID-19 appears so severe because the events are happening so fast. Hence, the motivation for social distancing, to slow that down.
 
-Meanwhile in other news, chronic disease kill tons more of us than COVID-19 ever will. We never panicked about all the deaths from obesity, heart disease, diabetes, and cancer because they're spread out over time. We don’t tend to be terribly concerned about chronic disease, at least not enough to do something to prevent it, until it hits us.
+Meanwhile in other news, chronic disease kills tons more of us than COVID-19 ever will. We never panicked about all the deaths from obesity, heart disease, diabetes, and cancer because they're spread out over time. We don’t tend to be terribly concerned about chronic disease, at least not enough to do something to prevent it, until it hits us.
 
 Maybe we should pay attention. With death from COVID-19 elevated in conjunction with comorbidies like obesity, diabetes, and heart disease, there has never been a better time than now to become healthier.
