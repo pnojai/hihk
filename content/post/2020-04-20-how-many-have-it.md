@@ -13,7 +13,7 @@ thumbnail: ''
 
 In the early days of the pandemic, and even now in mid-April 2020, we heard many estimates of the risk of the coronavirus SARS-CoV-2. Some think maybe it's like the flu. Others assert, this coronavirus is no flu.
 
-When we say coronavirs is or is not like influenza, what comparison are we making? One comparison could involve the incidence of death from each disease. The question could be, how do the numbers of people who perish this week from each disease, COVID-19 vs. the flu, compare? What about over a whole year? If it turned out a lot more people died from COVID-19 than flu, you might conclude COVID-19 is no flu.
+When we say coronavirus is or is not like influenza, what comparison are we making? One comparison could involve the incidence of death from each disease. The question could be, how do the numbers of people who perish this week from each disease, COVID-19 vs. the flu, compare? What about over a whole year? If it turned out a lot more people died from COVID-19 than flu, you might conclude COVID-19 is no flu.
 
 Another comparison could be about the rates of mortality instead of total numbers of infection. This question would be, what is the chance of dying if infected by COVID-19 vs. flu? In order to answer that, you need to know how many people have been infected with coronavirus and we haven’t known that.
 
