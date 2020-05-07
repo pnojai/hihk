@@ -11,7 +11,7 @@ thumbnail: ''
 
 Do you need tech assistance during the recovery? Data reporting, spreadsheet untangling, database backing up?
 
-If you need help treading these choppy waters, get in touch and maybe I can help. I would particularly like to hear from you if you are:
+If you need help treading these choppy waters, get in touch and maybe I can help. I would particularly welcome hearing from you if you are:
 
 - A public health non-profit,
 - In New York City, or
