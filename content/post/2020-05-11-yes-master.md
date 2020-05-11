@@ -10,7 +10,7 @@ description: ''
 thumbnail: ''
 ---
 
-I'm sitting in class at my old high school from decades ago. Sweating. It's the final exam. I didn't read anything from the textbook all semester. I thumb through it now. Chemistry. The tests are being passed out this very minute. I'm going to flunk it.
+I'm sitting in class at my old high school from decades ago. Sweating. It's the final exam. I didn't read anything from the textbook all semester. I thumb through it now. Chemistry. The tests are being passed out this very minute. I'm going to flunk.
 
 It gets worse. My high school diploma is invalid. After flunking this test, I'll have to repeat my senior year. I'll be the oldest graduating senior in history. *If* I ever graduate. It might never happen. Here's the test now. I can't read anything on it. It's over.
 
@@ -21,11 +21,11 @@ True story, this nightmare has recurred throughout my life. The dream setting ch
 Thankfully, I haven't had one of these nightmares in a long time. And it's funny because, in a way, I have been held back a grade. I'm back in graduate school getting a Master of Science in Data Science after I already had a career as an application database administrator. The courses are hard. I sweat. But thankfully, I'm not quaking. Why not?
 
 ## Commit to mastery
-Somewhere between then and now I made a conscious change in focus. Playing back my youthful terrors revealed a pattern. It was simple enough. I didn't know the material. But why not, and as a younster back then in high school and early college, how did I set myself up to be so scared in tests, or difficult homework, or term papers?
+Somewhere between then and now I made a conscious change in focus. Playing back my youthful terrors revealed a pattern. It was simple enough. I didn't know the material. But why not, and as a younster back then in high school and early college, how did I set myself up to be so scared of tests, or difficult homework, or term papers?
 
 I hadn't commited to mastery.
 
-I thought I was doing what I needed to do, but I was living out a bargain, reacting in the short run so I could meet requirements, just getting through the immediate crisis, finishing this paper, passing this test. I did get through them, and I even managed to get good grades, too, but at what cost? It was always hard and it was always stressful. And for what benefit? I hadn't really learned the material, so the effort was to some degree a waste of time. Maybe "waste" is too harsh because, okay, I did learn things, but I squandered opportunity more or less. Is there a better way?
+I thought I was doing what I needed to do, but I was living out a bargain, reacting in the short run so I could meet requirements, just getting through the immediate crisis, finishing this paper, passing this test. I did get through them, and I even managed to get good grades after all, but at what cost? It was always hard and it was always stressful. And for what benefit? I hadn't really learned the material, so the effort was to some degree a waste of time. Maybe "waste" is too harsh because, okay, I did learn things, but I squandered opportunity more or less. If I imagined back then someone calling me from the future, what did I want to hear?
 
 ## Yes, master?
 ![](https://datascience.jeffryes.net/img/yes_master.jpg)
@@ -53,10 +53,10 @@ While, my number one tip about mastery is having the intention to acquire it, my
 
 You can employ all sorts of study methods. Indeed, you should do that, but how do you know your studying is efficient, that you're achieving your goals, balancing your efforts effectively? There are many effective ways to organize a plan. David Allen's book *Getting Things Done* describes a great approach (so long as you keep it simple enough that you actually follow it and sustain it). Which study method works best?
 
-It really doesn't matter. The best methods are the ones you keep doing, the ones you can sustain. So work the Pomodoro Technique or use Anki to space repetitions of flashcards. Any such method has the potential to help you. Nevertheless, whatever methods you adopt, there's a constraint. No matter what, you're a human being living in time and space and your attention and actions only follow in sequence. Therefore, my number one tip about study methods is sequential access. Log your studies in a journal.
+It really doesn't matter. The best methods are the ones you keep doing, the ones you can sustain. So work the Pomodoro Technique or use Anki to space repetitions of flashcards. Any such method has the potential to help you. Nevertheless, whatever methods you adopt, there's a constraint. No matter what, you're a human being living in time and space, and your attention and actions only follow in sequence. Therefore, my number one tip about study methods is sequential access. Log your studies in a journal.
 
 For my journal, I use Emacs. (Yes, I am a geek.) I write an outline in Org mode. You could do it in Microsoft Word or write it in a Moleskine (although a digital file has the advantage of being searchable). Each day of studying gets a date stamp. I write my entry at the top of the document so I don't have to scroll to the bottom each day. At the end of the day, I list the subjects and topics I worked on. I don't reproduce all the notes I might have taken. I just track the topics. The act of journalizing expresses my commitment to mastery and lets me view in writing the sequence of my learning life.
 
 I (try to) review daily. I start a review session by referring to the journal. For working the review, I might refer to notes, work some sample problems, or run a flashcard session in Anki. Yesterday, when I wrote in the journal it put me on notice; these are the topics I commit to mastering. Today, when I read the journal, I'm checking in; how's that mastery coming along?
 
-A conscious commitment at the outset will work for you.
+A conscious commitment from the outset will grant your wish for mastery like a genie in a bottle.
