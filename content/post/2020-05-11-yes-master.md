@@ -21,11 +21,13 @@ True story, this nightmare has recurred throughout my life. The dream setting ch
 Thankfully, I haven't had one of these nightmares in a long time. And it's funny because, in a way, I have been held back a grade. I'm back in graduate school getting a Master of Science in Data Science after I already had a career as an application database administrator. The courses are hard. I sweat. But thankfully, I'm not quaking. Why not?
 
 ## Commit to mastery
-Somewhere between then and now I made a conscious change in focus. Playing back my youthful terrors revealed a pattern. It was simple enough. I didn't know the material. But why not, and as a younster back then in high school and early college, how did I set myself up to be so scared of tests, or difficult homework, or term papers?
+Somewhere between then and now I made a conscious change in focus. Playing back my youthful terrors revealed a pattern. It was simple enough. I didn't know the material. But why not, and as a youngster back then in high school and early college, how did I set myself up to be so scared of tests, or difficult homework, or term papers?
 
 I hadn't commited to mastery.
 
-I thought I was doing what I needed to do, but I was living out a bargain, reacting in the short run so I could meet requirements, just getting through the immediate crisis, finishing this paper, passing this test. I did get through them, and I even managed to get good grades after all, but at what cost? It was always hard and it was always stressful. And for what benefit? I hadn't really learned the material, so the effort was to some degree a waste of time. Maybe "waste" is too harsh because, okay, I did learn things, but I squandered opportunity more or less. If I imagined back then someone calling me from the future, what did I want to hear?
+I thought I was doing what I needed to do, but I was living out a bargain, reacting in the short run so I could meet requirements, just getting through the immediate crisis, finishing this paper, passing this test. I did get through them, and I even managed to get good grades after all, but at what cost? It was always hard and it was always stressful. And for what benefit? I hadn't really learned the material, so the effort was to some degree a waste of time. Maybe "waste" is too harsh because, okay, I did learn things, but I squandered opportunity more or less.
+
+If I imagined back then someone calling me from the future, what did I hope to hear?
 
 ## Yes, master?
 ![](https://datascience.jeffryes.net/img/yes_master.jpg)
