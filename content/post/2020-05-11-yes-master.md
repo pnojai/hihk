@@ -38,7 +38,7 @@ That's it. I have a lot of advice about different study methods. I cultivated ha
 
 What that means is attending to mastery every step of the way. My crises in youth were borne from reacting. I often replayed an unproductive script of catching up to current demands. Once a crisis passed, the material I learned (but not really) then flew out of my head as I shifted focus to responding to the next study crisis. In contrast, an intention to master something *before you begin* puts you on the path of acquiring mastery.
 
-It's a crucial shift in perspective and intention. Every time you crack a book, the question you have to ask yourself is, "How am I going to make this learning permanent?" It's easy to delude yourself into thinking you accomplished something when you highlight this passage in this book, or fill this notebook with notes from a lecture or video, and what's to worry? There's always Google, anyway. (Hey, I can just look up whatever I need to know.)
+It's a crucial shift in perspective and intention. Every time you crack a book, ask yourself, "How am I going to make this learning permanent?" You need a plan. It's easy to delude yourself into thinking you accomplished something when you highlight this passage in this book, or fill this notebook with notes from a lecture or video, and what's to worry? There's always Google, anyway. (Hey, I can just look up whatever I need to know.)
 
 Beware, a great search engine is not mastery.
 
