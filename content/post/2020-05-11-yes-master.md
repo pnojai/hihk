@@ -20,7 +20,7 @@ True story, this nightmare has recurred throughout my life. The dream setting ch
 
 Thankfully, I haven't had one of these nightmares in a long time. And it's funny because, in a way, I have been held back a grade. I'm back in graduate school getting a Master of Science in Data Science after I already had a career as an application database administrator. The courses are hard. I sweat. But thankfully, I'm not quaking. Why not?
 
-## Commit to mastery
+## Commitment to mastery
 Somewhere between then and now I made a conscious change in focus. Playing back my youthful terrors revealed a pattern. It was simple enough. I didn't know the material. But why not, and as a youngster back then in high school and early college, how did I set myself up to be so scared of tests, or difficult homework, or term papers?
 
 I hadn't commited to mastery.
