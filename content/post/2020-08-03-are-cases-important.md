@@ -1,5 +1,5 @@
 ---
-title: Are cases important
+title: Are cases important?
 author: Jai
 date: '2020-08-03'
 slug: are-cases-important
