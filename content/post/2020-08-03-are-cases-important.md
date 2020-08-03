@@ -1,8 +1,8 @@
 ---
-title: The case for cases
+title: Are cases important
 author: Jai
 date: '2020-08-03'
-slug: the-case-for-cases
+slug: are-cases-important
 categories:
   - Public Health
 tags:
