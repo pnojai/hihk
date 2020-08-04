@@ -1,0 +1,42 @@
+---
+title: Things I heard about herd
+author: Jai
+date: '2020-08-04'
+slug: things-i-heard-about-herd
+categories:
+  - Public Health
+tags:
+  - Coronavirus
+  - Epidemiology
+description: ''
+thumbnail: ''
+---
+
+A couple months ago, I did a back-of-the-envelope calculation of the human cost of herd immunity to SARS-CoV-2. I estimated the U.S. would not see herd immunity until it reached another 195 million cases and, grimly, the deaths that would accompany them. I believed herd immunity was impossible. Shortly thereafter, I saw an article from Johns Hopkins University that did the calculation the same way I did and came up with a similar estimate of 200 million cases.
+
+However, in the month that followed, I observed the counts for daily new deaths in various locales and in some places like New York City, new deaths stayed down. I believed we still had infected people travelling into NYC, so I wondered if the low level of new deaths were due to controls like masks and social distancing or due to something else, perhaps immunity.
+
+I feel inclined to believe that the population of NYC and some other regions are already in a state of herd immunity. I've seen opinions about the ethics of pursuing herd immunity, but I don't advocate for infection in pursuit of immunity. I simply believe I observe its effects already.
+
+Since I am disposed to believe in these effects, I could be susceptible to confirmation bias. Therefore, I include in this post a reference to reasonable discussion about multiple views.
+
+## Herd immunity is unachievable
+- [Early Herd Immunity against COVID-19: A Dangerous Misconception](https://coronavirus.jhu.edu/from-our-experts/early-herd-immunity-against-covid-19-a-dangerous-misconception). This article from Johns Hopkins University echoes my own earlier calculation.
+- [Sustained suppression](https://rdcu.be/b54KU). This editorial appeared in the journal, *Nature Biomedical Engineering*. The journal's position is the only plausible way to achieve herd immunity is through mass vaccination. Meanwhile, suppression of the viral transmission should continue by means of social distancing, mass testing, isolation of cases, contact tracing, etc.
+
+As a sidebar, the editorial maintains that antibody tests are insufficiently specific to be of use for individuals. This view is not universal. The following symposium from UCSF Department of Medicine suggests a meaningful benefit from rapid diagnostic testing even at sensitivities lower than clinical-grade tests.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kNADw5io9Ms?start=480" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Herd immunity is already here in some places
+Some experts believe we have already reached herd immunity in some locales.
+
+- Dr. Sunetra Gupta, a theoretical epidemiologist at Oxford University.
+  - Her paper, [The impact of host resistance on cumulative mortality and the threshold of herd immunity for SARS-CoV-2](https://www.medrxiv.org/content/10.1101/2020.07.15.20154294v1) discusses cross protection from other coronaviruses and the reduction in the threshold required for herd immunity when a population is heterogenous. The paper suggests sufficient herd immunity may already be in place to mitigate a second wave.
+  - In [We may already have herd immunity – an interview with Professor Sunetra Gupta](https://reaction.life/we-may-already-have-herd-immunity-an-interview-with-professor-sunetra-gupta/), Professor Gupta discusses her study, as well as her views on the social costs of lockdown, immune mechanisms, and the curtailment of academic debate.
+- Dr. Gabriela Gomes, Professor of Mathematics and Statistics at the University of Strathclyde Glasgow. In her study, [Herd immunity thresholds for SARS-CoV-2 estimated from unfolding epidemics](https://www.medrxiv.org/content/10.1101/2020.07.23.20160762v1), Professor Gomes argues that, although random vaccination might require population coverage of 60%, this is not the case for immunity induced by natural selection. Professor Gomes estimates the threshold with natural selection to be 10-20%, and suggests some communities may already be close to reaching that threshold.
+
+## My feeling on this date
+I will continue to consider a variety of views while observing one other thing that matters to me even more, namely the data. I watch the plots for new deaths and excess deaths every day. I tend to believe the views suggesting that places like NYC have reached herd immunity because I think the data support it. I could be wrong. On the other hand, when I did express skepticism earlier about the possibility for herd immunity, I received a stinging rebuke from one epidemiologist.
+
+> Who are you going to believe, your models or your lying data?
