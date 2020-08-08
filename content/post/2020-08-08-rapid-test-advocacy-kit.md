@@ -51,6 +51,7 @@ The FDA currently requires that any rapid test must meet a strict sensitivity th
 Please see https://www.rapidtests.org for more information.
 
 Thank you for your help,
+
 [Insert your name]
 
 #### Letter to your state Governor
@@ -65,6 +66,7 @@ The FDA currently requires that any rapid test must meet a strict sensitivity th
 Please see https://www.rapidtests.org for more information.
 
 Thank you for your help,
+
 [Insert your name]
 
 ### Phone calls
