@@ -16,7 +16,7 @@ Rapid testing for SARS-CoV-2 would change the game, but your help is needed to m
 Current tests described as "rapid" still require equipment and the results arent as rapid as possible. The sticking point is around FDA requirements about test sensitivity. The most rapid tests aren't authorized yet because they are less sensitive than clinical tests. However, although clinical-grade tests are necessary to diagnose cases for treatment, disease surveillance using rapid tests can greatly deter community spread even if they are somewhat less sensitive.
 
 ## What does it mean?
-Imagine a world in which you can once again go to work every day, send your kids to school without worry, dine in a restaurant, go to a ball game, worship in church, or attend a concert. The test takes 5-10 minutes and simply involves a simple step like spitting in a solution or licking a strip of paper. When you pass, you're in.
+Imagine a world in which you can once again go to work every day, send your kids to school without worry, dine in a restaurant, go to a ball game, worship in church, or attend a concert. The test takes 5-10 minutes and involves a simple step like spitting in a solution or licking a strip of paper. When you pass, you're in.
 
 - This op-ed in the *New York Times* presents the case: [A Cheap, Simple Way to Control the Coronavirus](https://www.nytimes.com/2020/07/03/opinion/coronavirus-tests.html)
 - More resources: [RapidTests.org](https://www.rapidtests.org)
