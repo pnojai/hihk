@@ -13,16 +13,27 @@ thumbnail: ''
 
 Welp, I finally learned why people code missing values with absurd numbers. I feel like I should have untuited it from my personal experience.
 
-If you collect data about body weight, for example, and you're missing a value for an observation, instead of leaving it null you might enter the value -99. You coded the missing value with an absurd number on purpose.
+If you collect data about body weight, for example, and you're missing a value for an observation, instead of leaving it null you might enter the value `-99`. You coded the missing value with an absurd number on purpose.
 
 I always wondered why I saw that in some datasets.
 
-The first reason you do that is so software imports of that data don't mess up. If you used a string like "MISSING", you'll frequently get an error when you try to import the data.
+The first reason you do that is so software imports of that data don't mess up the datatype of the variable, which is a possibility if you mix integer data with a string like `"MISSING"`.
 
-Now, error messages are good. They tell you something is inconsistent and you better figure out what. However, in a data import workflow there is another way to alert the user about missing values, by substituting (coding) an absurd value. If you forget to handle it, the outlier is intended to tip you off when you look at your data.
+It's safest if the software knows to return an error message like that. Error messages are good. They tell you something is inconsistent and you better figure out what.
 
-You did look at your data, right?
+Not all software does know to do that. I always loathed the old JET engine Microsoft SQL Server used to import Excel spreadsheets (which I also loathed for data interchange). If there was a value with an inconsistent datatype, the import would still succeed but the data driver would simply leave out the inconsistent values. I wouldn't know right away if the nulls I got in the load were due to missing values or data entry errors.
 
-Summarization of your data import is an essential task. If you make a habit of that and you forget to handle missing values that have been coded, then the absurd outlier will tip you off.
+If you recode missing values with an absurd value, the user always knows what is going on. An absurd outlier is intended to tip them off that they forgot to handle the coded missing value on import. They'll see it when they look at the data.
 
-I learned this basic lesson during my daily reading of Andrew Gelman's treasure-trove of a blog. The article and its commentary demonstrate the point. [Know your data, recode missing data codes](https://statmodeling.stat.columbia.edu/2020/08/10/know-your-data-recode-missing-data-codes/)
+When you import data, you do look at it, right?
+
+Summarization of a data import is an essential task. If you make a habit of summarizing imported data and you forget to handle coded missing values, you'll see the absurd outlier and know what happened.
+
+This is the safest ecosytem for a data user. Absurd outliers alert the user about missing values. Import errors alert the user about inconsistent datatypes that are likely to be data entry defects.
+
+**The 101**
+
+1. If you provide data, code missing values with an absurd value and document that in your codebook for all to see.
+1. If you consume data, read the codebook and handle the missing values on import. Then summarize the data you loaded to detect outliers in the event you forgot to handle the missing values.
+
+I learned these basic lessons during my daily reading of Andrew Gelman's treasure trove of a blog. His article and its accompanying commentary demonstrate the point. [Know your data, recode missing data codes](https://statmodeling.stat.columbia.edu/2020/08/10/know-your-data-recode-missing-data-codes/)
